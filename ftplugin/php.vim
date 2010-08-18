@@ -1,12 +1,12 @@
 " File:        php.vim
 " Description: PHP Integration for VIM plugin
-" 			   This file is a considerable fork of the original 
+" 			   This file is a considerable fork of the original
 " 			   PDV written by Tobias Schlitt <toby@php.net>.
 " Maintainer:  Steve Francia <steve.francia@gmail.com> <http://spf13.com>
 " Version:     0.8
 " Last Change: 23rd April 2010
-" 
-" 
+"
+"
 " Section: script init stuff {{{1
 if exists("loaded_piv")
     finish
@@ -37,7 +37,7 @@ endfunction
 " First the global PHP configuration
 let php_sql_query=1 " to highlight SQL syntax in strings
 let php_htmlInStrings=1 " to highlight HTML in string
-let php_noShortTags = 1 " to disable short tags 
+let php_noShortTags = 1 " to disable short tags
 let php_folding = 1  "to enable folding for classes and functions
 let PHP_autoformatcomment = 1
 let php_sync_method = -1
@@ -101,43 +101,6 @@ inoremap <buffer> <C-H> <ESC>:!phpm <C-R>=expand("<cword>")<CR><CR>
 
 " }}}
 
-" {{{ Automatic close char mapping
-
-if g:PIVPearStyle
-	inoremap <buffer>  { {<CR>}<C-O>O
-	inoremap <buffer> ( (  )<LEFT><LEFT>
-else
-	inoremap  { {<CR>}<C-O>O
-	inoremap ( ()<LEFT>
-endif
-
-inoremap <buffer> [ []<LEFT>
-inoremap <buffer> " ""<LEFT>
-inoremap <buffer> ' ''<LEFT>
-
-" }}} Automatic close char mapping
-
-" {{{ Wrap visual selections with chars
-
-:vnoremap <buffer> ( "zdi(<C-R>z)<ESC>
-:vnoremap <buffer> { "zdi{<C-R>z}<ESC>
-:vnoremap <buffer> [ "zdi[<C-R>z]<ESC>
-:vnoremap <buffer> ' "zdi'<C-R>z'<ESC>
-" Removed in favor of register addressing
-" :vnoremap " "zdi"<C-R>z"<ESC>
-
-" }}} Wrap visual selections with chars
-
-" {{{ Dictionary completion
-
-" The completion dictionary is provided by Rasmus:
-" http://lerdorf.com/funclist.txt
-setlocal dictionary-=/home/dotxp/funclist.txt dictionary+=/home/dotxp/funclist.txt
-" Use the dictionary completion
-setlocal complete-=k complete+=k
-
-" }}} Dictionary completion
-
 " {{{ Alignment
 
 func! PhpAlign() range
@@ -154,15 +117,15 @@ func! PhpAlign() range
 			continue
 		endif
 		" \{-\} matches ungreed *
-        let l:index = substitute (getline (l:line), '^\s*\(.\{-\}\)\s*\S\{0,1}=\S\{0,1\}\s.*$', '\1', "") 
+        let l:index = substitute (getline (l:line), '^\s*\(.\{-\}\)\s*\S\{0,1}=\S\{0,1\}\s.*$', '\1', "")
         let l:indexlength = strlen (l:index)
         let l:maxlength = l:indexlength > l:maxlength ? l:indexlength : l:maxlength
         let l:line = l:line + 1
     endwhile
-    
+
 	let l:line = a:firstline
 	let l:format = "%s%-" . l:maxlength . "s %s %s"
-    
+
 	while l:line <= l:endline
 		if getline (l:line) =~ '^\s*\/\/.*$'
 			let l:line = l:line + 1
@@ -180,7 +143,7 @@ func! PhpAlign() range
     let &g:paste = l:paste
 endfunc
 
-" }}}   
+" }}}
 
 function! s:CreateNMap(target, combo)
     if !hasmapto(a:target, 'n')
