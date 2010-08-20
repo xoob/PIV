@@ -101,21 +101,22 @@ inoremap <buffer> <C-H> <ESC>:!phpm <C-R>=expand("<cword>")<CR><CR>
 
 " }}}
 
-" {{{ Automatic close char mapping
+"" {{{ Automatic close char mapping
+" NOTE: (taxilian) This should never be done in a filetype specific vim
+" script, IMHO, so I am removing this from here
+"if g:PIVPearStyle
+	"inoremap <buffer>  { {<CR>}<C-O>O
+	"inoremap <buffer> ( (  )<LEFT><LEFT>
+"else
+	"inoremap  { {<CR>}<C-O>O
+	"inoremap ( ()<LEFT>
+"endif
 
-if g:PIVPearStyle
-	inoremap <buffer>  { {<CR>}<C-O>O
-	inoremap <buffer> ( (  )<LEFT><LEFT>
-else
-	inoremap  { {<CR>}<C-O>O
-	inoremap ( ()<LEFT>
-endif
+"inoremap <buffer> [ []<LEFT>
+"inoremap <buffer> " ""<LEFT>
+"inoremap <buffer> ' ''<LEFT>
 
-inoremap <buffer> [ []<LEFT>
-inoremap <buffer> " ""<LEFT>
-inoremap <buffer> ' ''<LEFT>
-
-" }}} Automatic close char mapping
+"" }}} Automatic close char mapping
 
 " {{{ Wrap visual selections with chars
 
