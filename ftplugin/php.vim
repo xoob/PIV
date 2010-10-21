@@ -101,22 +101,6 @@ inoremap <buffer> <C-H> <ESC>:!phpm <C-R>=expand("<cword>")<CR><CR>
 
 " }}}
 
-" {{{ Automatic close char mapping
-
-if g:PIVPearStyle
-	inoremap <buffer>  { {<CR>}<C-O>O
-	inoremap <buffer> ( (  )<LEFT><LEFT>
-else
-	inoremap  { {<CR>}<C-O>O
-	inoremap ( ()<LEFT>
-endif
-
-inoremap <buffer> [ []<LEFT>
-inoremap <buffer> " ""<LEFT>
-inoremap <buffer> ' ''<LEFT>
-
-" }}} Automatic close char mapping
-
 " {{{ Wrap visual selections with chars
 
 :vnoremap <buffer> ( "zdi(<C-R>z)<ESC>
