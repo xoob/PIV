@@ -55,9 +55,9 @@ call s:InitVariable("g:PIVPearStyle", 0)
 setlocal autoindent " Auto indent after a {
 setlocal smartindent
 
-" Linewidth to 79, because of the formatoptions this is only valid for
+" Linewidth to 80, because of the formatoptions this is only valid for
 " comments
-setlocal textwidth=79
+setlocal textwidth=80
 set formatoptions=qrocb
 
 setlocal nowrap 		" Do not wrap lines automatically
@@ -100,6 +100,13 @@ noremap <buffer> ; :s/\([^;]\)$/\1;/<cr>
 inoremap <buffer> <C-H> <ESC>:!phpm <C-R>=expand("<cword>")<CR><CR>
 
 " }}}
+
+" {{{ Automatic close char mapping
+
+inoremap  { {<CR>}<C-O>O
+
+
+" }}} Automatic close char mapping
 
 " {{{ Wrap visual selections with chars
 

@@ -2,7 +2,7 @@
 " Language:	PHP
 " Author:	John Wellesz <John.wellesz (AT) teaser (DOT) fr>
 " URL:		http://www.2072productions.com/vim/indent/php.vim
-" Last Change:	2010 Jully 26th
+" Last Change:	2010 July 26th
 " Newsletter:	http://www.2072productions.com/?to=php-indent-for-vim-newsletter.php
 " Version:	1.33
 "
@@ -247,7 +247,7 @@
 " NOTE: This script must be used with PHP syntax ON and with the php syntax
 "	script by Lutz Eymers (http://www.isp.de/data/php.vim ) or with the
 "	script by Peter Hodge (http://www.vim.org/scripts/script.php?script_id=1571 )
-"	the later is bunbdled by default with Vim 7.
+"	the later is bundled by default with Vim 7.
 "
 "
 "	In the case you have syntax errors in your script such as HereDoc end

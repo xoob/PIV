@@ -79,7 +79,7 @@ let g:phpDocBlockIncludedPostfix = '**#@+'
 " .. search this # of empty lines for PhpDoc comments
 let g:searchPhpDocLineCount = 1
 " .. search this # of empty lines that 'trail' the foldmatch
-let g:searchEmptyLinesPostfixing = 1
+let g:searchEmptyLinesPostfixing = 0
 " }}}
 " {{{ Script constants
 let s:synIDattr_exists = exists('*synIDattr')
