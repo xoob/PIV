@@ -2,7 +2,7 @@
 " Language:	PHP
 " Author:	John Wellesz <John.wellesz (AT) teaser (DOT) fr>
 " URL:		http://www.2072productions.com/vim/indent/php.vim
-" Last Change:	2010 Jully 26th
+" Last Change:	2010 July 26th
 " Newsletter:	http://www.2072productions.com/?to=php-indent-for-vim-newsletter.php
 " Version:	1.33
 "
@@ -247,7 +247,7 @@
 " NOTE: This script must be used with PHP syntax ON and with the php syntax
 "	script by Lutz Eymers (http://www.isp.de/data/php.vim ) or with the
 "	script by Peter Hodge (http://www.vim.org/scripts/script.php?script_id=1571 )
-"	the later is bunbdled by default with Vim 7.
+"	the later is bundled by default with Vim 7.
 "
 "
 "	In the case you have syntax errors in your script such as HereDoc end
@@ -662,7 +662,7 @@ if ! s:autoresetoptions
 endif
 
 function! ResetPhpOptions()
-    if ! b:optionsset && &filetype == "php" 
+    if ! b:optionsset && &filetype == "php"
 	if b:PHP_autoformatcomment
 
 	    " Set the comment setting to something correct for PHP
@@ -1228,7 +1228,7 @@ function! GetPhpIndent()
 	    if openedparent != lnum
 		let ind = indent(openedparent)
 	    endif
-	
+
 	    " if the line before starts a block then we need to indent the
 	    " current line.
 	elseif last_line =~ '^\s*'.s:blockstart
@@ -1254,7 +1254,7 @@ function! GetPhpIndent()
 	endif
 
     endif
- 
+
     "echo "end"
     "call getchar()
     " If the current line closes a multiline function call or array def
