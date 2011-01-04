@@ -52,15 +52,10 @@ call s:InitVariable("g:PIVPearStyle", 0)
 " Auto expand tabs to spaces
 " setlocal expandtab
 
-setlocal autoindent " Auto indent after a {
-setlocal smartindent
-
 " Linewidth to 80, because of the formatoptions this is only valid for
 " comments
 setlocal textwidth=80
 set formatoptions=qrocb
-
-setlocal nowrap 		" Do not wrap lines automatically
 
 " Correct indentation after opening a phpdocblock and automatic * on every
 " line
@@ -82,42 +77,11 @@ syntax on " Switch syntax highlighting on, if it was not
 nnoremap <silent> <plug>PIVphpDocSingle :call PhpDocSingle()<CR>
 vnoremap <silent> <plug>PIVphpDocRange :call PhpDocRange()<CR>
 vnoremap <silent> <plug>PIVphpAlign :call PhpAlign()<CR>
-"inoremap <buffer> <leader>d :call PhpDocSingle()<CR>i
-
-" Map ; to run PHP parser check
-" noremap ; :!php5 -l %<CR>
-
-" Map ; to "add ; to the end of the line, when missing"
-noremap <buffer> ; :s/\([^;]\)$/\1;/<cr>
-
-" Map <ctrl>+p to single line mode documentation (in insert and command mode)
-"inoremap <buffer> <leader>d :call PhpDocSingle()<CR>i
-"nnoremap <buffer> <leader>d :call PhpDocSingle()<CR>
-" Map <ctrl>+p to multi line mode documentation (in visual mode)
-"vnoremap <buffer> <leader>d :call PhpDocRange()<CR>
 
 " Map <CTRL>-H to search phpm for the function name currently under the cursor (insert mode only)
 inoremap <buffer> <C-H> <ESC>:!phpm <C-R>=expand("<cword>")<CR><CR>
 
 " }}}
-
-" {{{ Automatic close char mapping
-
-inoremap  { {<CR>}<C-O>O
-
-
-" }}} Automatic close char mapping
-
-" {{{ Wrap visual selections with chars
-
-:vnoremap <buffer> ( "zdi(<C-R>z)<ESC>
-:vnoremap <buffer> { "zdi{<C-R>z}<ESC>
-:vnoremap <buffer> [ "zdi[<C-R>z]<ESC>
-:vnoremap <buffer> ' "zdi'<C-R>z'<ESC>
-" Removed in favor of register addressing
-" :vnoremap " "zdi"<C-R>z"<ESC>
-
-" }}} Wrap visual selections with chars
 
 " {{{ Dictionary completion
 
