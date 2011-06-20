@@ -89,7 +89,7 @@ vnoremap <silent> <plug>PIVphpAlign :call PhpAlign()<CR>
 " noremap ; :!php5 -l %<CR>
 
 " Map ; to "add ; to the end of the line, when missing"
-"noremap <buffer> ; :s/\([^;]\)$/\1;/<cr>
+" noremap <buffer> ; :s/\([^;]\)$/\1;/<cr>
 
 " Map <ctrl>+p to single line mode documentation (in insert and command mode)
 "inoremap <buffer> <leader>d :call PhpDocSingle()<CR>i
