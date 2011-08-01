@@ -50,7 +50,7 @@ call s:InitVariable("g:PIVCreateDefaultMappings", 1)
 call s:InitVariable("g:PIVPearStyle", 0)
 
 " Auto expand tabs to spaces
-" setlocal expandtab
+setlocal expandtab
 
 " Linewidth to 80, because of the formatoptions this is only valid for
 " comments
@@ -67,7 +67,8 @@ setlocal makeprg=php\ -l\ %
 " Use errorformat for parsing PHP error output
 setlocal errorformat=%m\ in\ %f\ on\ line\ %l
 
-syntax on " Switch syntax highlighting on, if it was not
+" Switch syntax highlighting on, if it was not
+if !exists("g:syntax_on") | syntax on | endif
 
 "setlocal keywordprg=pman " Use pman for manual pages
 
