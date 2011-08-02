@@ -163,7 +163,7 @@ function! s:PHPCustomFolds() " {{{
 	"       'g:searchEmptyLinesPostfixing'..
 
 	" Fold function with PhpDoc (function foo() {})
-	call s:PHPFoldPureBlock('\<function\>', s:FOLD_WITHOUT_PHPDOC)
+	call s:PHPFoldPureBlock('\<function\>.*(', s:FOLD_WITHOUT_PHPDOC)
 
 	" Fold class properties with PhpDoc (var $foo = NULL;)
 	call s:PHPFoldProperties('^\s*var\s\$', ";", s:FOLD_WITH_PHPDOC, 1, 1)
