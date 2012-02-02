@@ -49,10 +49,6 @@ call s:InitVariable("g:syntax_extra_inc", 'doxygen')
 call s:InitVariable("g:PIVCreateDefaultMappings", 1)
 call s:InitVariable("g:PIVPearStyle", 0)
 
-" Correct indentation after opening a phpdocblock and automatic * on every
-" line
-setlocal formatoptions=qroct
-
 " Use php syntax check when doing :make
 setlocal makeprg=php\ -l\ %
 
