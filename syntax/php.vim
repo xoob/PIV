@@ -78,7 +78,8 @@ syn include @sqlTop syntax/sql.vim
 syn sync clear
 unlet b:current_syntax
 syn cluster sqlTop remove=sqlString,sqlComment
-if exists("php_sql_query")
+
+if exists("php_sql_query") && php_sql_query==1
   syn cluster phpAddStrings contains=@sqlTop
 endif
 
@@ -426,20 +427,38 @@ syntax keyword phpClasses containedin=ALLBUT,phpComment,phpStringDouble,phpStrin
 " Control Structures
 syn keyword phpStatement if else elseif while do for foreach break switch case default continue return goto as endif endwhile endfor endforeach endswitch declare endeclare contained
 
+" Structure
+syn keyword phpStructure list contained
+
+" Label
+syn keyword phpLabel case default switch contained
+
+" Conditional
+syn keyword phpConditional  declare else enddeclare endswitch elseif endif if switch  contained
+
 " Class Keywords
 syn keyword phpType class abstract extends interface implements static final var public private protected const contained
 
+" Storage Class
+syn keyword phpStorageClass final global private protected public static  contained
+
 " Magic Methods
-syn keyword phpStatement __construct __destruct __call __callStatic __get __set __isset __unset __sleep __wakeup __toString __invoke __set_state __clone contained
+syn keyword phpMagicMethods __construct __destruct __call __callStatic __get __set __isset __unset __sleep __wakeup __toString __invoke __set_state __clone contained
 
 " Exception Keywords
 syn keyword phpStatement try catch throw contained
 
 " Language Constructs
-syn keyword phpStatement die exit eval empty isset unset list instanceof contained
+syn keyword phpSpecialFunction die exit eval empty isset unset contained
+
+" Comparison
+syn keyword phpComparison instanceof contained
 
 " These special keywords have traditionally received special colors
 syn keyword phpSpecial function echo print new clone contained
+
+" Define
+syn keyword phpDefine function contained
 
 " Include & friends
 syn keyword phpInclude include include_once require require_once namespace use contained
@@ -549,7 +568,7 @@ else
 endif
 
 " Clusters
-syn cluster phpClConst contains=phpFunctions,phpClasses,phpIdentifier,phpStatement,phpOperator,phpStringSingle,phpStringDouble,phpBacktick,phpNumber,phpType,phpBoolean,phpStructure,phpMethodsVar,phpConstants,phpException,phpSuperglobals,phpMagicConstants,phpServerVars
+syn cluster phpClConst contains=phpFunctions,phpClasses,phpIdentifier,phpStatement,phpOperator,phpStringSingle,phpStringDouble,phpBacktick,phpNumber,phpType,phpBoolean,phpStructure,phpMethodsVar,phpConstants,phpException,phpSuperglobals,phpMagicConstants,phpServerVars,phpLabel,phpMagicMethods,phpConditional,phpSpecialFunction,phpComparison
 syn cluster phpClInside contains=@phpClConst,phpComment,phpParent,phpParentError,phpInclude,phpHereDoc,phpNowDoc
 syn cluster phpClFunction contains=@phpClInside,phpDefine,phpParentError,phpStorageClass,phpSpecial
 syn cluster phpClTop contains=@phpClFunction,phpFoldFunction,phpFoldClass,phpFoldInterface,phpFoldTry,phpFoldCatch
@@ -618,36 +637,42 @@ if !exists("did_php_syn_inits")
   hi def link phpMagicConstants   Constant
   hi def link phpServerVars       Constant
   hi def link phpConstants        Constant
-  hi def link phpBoolean          Constant
-  hi def link phpNumber           Constant
+  hi def link phpBoolean          Boolean
+  hi def link phpNumber           Number 
   hi def link phpStringSingle     String
   hi def link phpStringDouble     String
   hi def link phpBacktick         String
   hi def link phpHereDoc          String
   hi def link phpNowDoc           String
-  hi def link phpFunctions        Identifier
-  hi def link phpClasses          Identifier
-  hi def link phpMethods          Identifier
+  hi def link phpFunctions        Function
+  hi def link phpClasses          Function
+  hi def link phpMethods          Function
   hi def link phpIdentifier       Identifier
   hi def link phpIdentifierSimply Identifier
   hi def link phpStatement        Statement
-  hi def link phpStructure        Statement
-  hi def link phpException        Statement
+  hi def link phpStructure        Structure
+  hi def link phpException        Exception
   hi def link phpOperator         Operator
   hi def link phpVarSelector      Operator
   hi def link phpInclude          PreProc
-  hi def link phpDefine           PreProc
+  hi def link phpDefine           Define
   hi def link phpSpecial          PreProc
-  hi def link phpFCKeyword        PreProc
+  hi def link phpFCKeyword        Define
   hi def link phpType             Type
   hi def link phpSCKeyword        Type
-  hi def link phpMemberSelector   Type
-  hi def link phpSpecialChar      Special
+  hi def link phpMemberSelector   Structure
+  hi def link phpSpecialChar      SpecialChar
   hi def link phpStrEsc           Special
-  hi def link phpParent           Special
+  hi def link phpParent           Delimiter
   hi def link phpParentError      Error
   hi def link phpOctalError       Error
   hi def link phpTodo             Todo
+  hi def link phpConditional      Conditional
+  hi def link phpMagicMethods     Operator
+  hi def link phpLabel            Label
+  hi def link phpSpecialFunction  Operator
+  hi def link phpStorageClass     StorageClass
+  hi def link phpComparison       Operator
 
 endif
 
