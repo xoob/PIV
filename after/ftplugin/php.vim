@@ -1,4 +1,3 @@
-
 if !exists("g:DisableAutoPHPFolding")
     let g:DisableAutoPHPFolding = 0
 endif
@@ -9,8 +8,3 @@ if !g:DisableAutoPHPFolding
 	" Turn on PHP fast folds
 	EnableFastPHPFolds 
 endif
-
-" Having both filetype plugin and filetype indent causes indent not to work
-" properly for php files (only non *.php files).  This resets back to proper
-" format options
-set formatoptions=qrowcb
