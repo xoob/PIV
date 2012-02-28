@@ -79,7 +79,7 @@ let g:phpDocBlockIncludedPostfix = '**#@+'
 " .. search this # of empty lines for PhpDoc comments
 let g:searchPhpDocLineCount = 1
 " .. search this # of empty lines that 'trail' the foldmatch
-let g:searchEmptyLinesPostfixing = 1
+let g:searchEmptyLinesPostfixing = 0
 " }}}
 " {{{ Script constants
 let s:synIDattr_exists = exists('*synIDattr')
@@ -163,13 +163,13 @@ function! s:PHPCustomFolds() " {{{
 	"       'g:searchEmptyLinesPostfixing'..
 
 	" Fold function with PhpDoc (function foo() {})
-	call s:PHPFoldPureBlock('function', s:FOLD_WITH_PHPDOC)
+	call s:PHPFoldPureBlock('\<function\>.*(', s:FOLD_WITHOUT_PHPDOC)
 
 	" Fold class properties with PhpDoc (var $foo = NULL;)
 	call s:PHPFoldProperties('^\s*var\s\$', ";", s:FOLD_WITH_PHPDOC, 1, 1)
 
 	" Fold class without PhpDoc (class foo {})
-	call s:PHPFoldPureBlock('^\s*\(abstract\s*\)\?class', s:FOLD_WITH_PHPDOC)
+	call s:PHPFoldPureBlock('^\s*\(abstract\s*\)\?class', s:FOLD_WITHOUT_PHPDOC)
 	
 	" Fold define()'s with their PhpDoc
 	call s:PHPFoldProperties('^\s*define\s*(', ";", s:FOLD_WITH_PHPDOC)
