@@ -264,16 +264,12 @@ endfunc
 " {{{ PhpDocFuncEnd()
 func! PhpDocFuncEnd()
 
-	call append(line('.'), matchstr(getline('.'), '^\s*') . g:pdv_cfg_CommentEnd)
 endfunc
 " }}}
 " {{{ PhpDocFuncEndAuto()
 func! PhpDocFuncEndAuto()
 
 
-	call search('{')
-	call searchpair('{', '', '}')
-	call append(line('.'), matchstr(getline('.'), '^\s*') . g:pdv_cfg_CommentEnd)
 
 endfunc
 " }}}
@@ -312,12 +308,9 @@ func! PhpDocFunc()
     " Local indent
     let l:txtBOL = g:pdv_cfg_BOL . l:indent
 
-		exec l:txtBOL . "/* " . l:scope ." ".  funcname . "(" . l:params . ") {{" . "{ */ " . g:pdv_cfg_EOL
-	
     exe l:txtBOL . g:pdv_cfg_CommentHead . g:pdv_cfg_EOL
-	" added folding
-	exe l:txtBOL . g:pdv_cfg_Comment1 . funcname . g:pdv_cfg_EOL
-    exe l:txtBOL . g:pdv_cfg_Commentn . g:pdv_cfg_EOL
+    exe l:txtBOL . g:pdv_cfg_Comment1 . funcname . " " . g:pdv_cfg_EOL
+		exe l:txtBOL . g:pdv_cfg_Commentn . g:pdv_cfg_EOL
 
 	while (l:parameters != ",") && (l:parameters != "")
 		" Save 1st parameter
@@ -358,7 +351,7 @@ func! PhpDocFunc()
 	" Close the comment block.
 	exe l:txtBOL . g:pdv_cfg_CommentTail . g:pdv_cfg_EOL
 
-	return l:modifier ." ". l:funcname . PhpDocFuncEndAuto()
+	return l:modifier ." ". l:funcname 
 endfunc
 
 " }}}  
