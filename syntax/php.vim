@@ -88,7 +88,7 @@ if exists("php_html_in_strings")
 endif
 
 syn case match
- 
+
 " Superblobals
 syn keyword phpSuperglobals GLOBALS _GET _POST _REQUEST _FILES _COOKIE _SERVER _SESSION _ENV HTTP_RAW_POST_DATA php_errormsg http_response_header argc argv contained
 

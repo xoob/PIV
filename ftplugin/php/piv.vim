@@ -1,6 +1,6 @@
 " File:        php.vim
 " Description: PHP Integration for VIM plugin
-" 			   This file is a considerable fork of the original 
+" 			   This file is a considerable fork of the original
 " 			   PDV written by Tobias Schlitt <toby@php.net>.
 " Maintainer:  Steve Francia <piv@spf13.com> <http://spf13.com>
 " Version:     0.9
@@ -48,7 +48,6 @@ call s:InitVariable("g:syntax_extra_php", 'doxygen')
 call s:InitVariable("g:syntax_extra_inc", 'doxygen')
 call s:InitVariable("g:PIVCreateDefaultMappings", 1)
 call s:InitVariable("g:PIVPearStyle", 0)
-call s:InitVariable("g:PIVAutoClose", 0)
 
 " Use php syntax check when doing :make
 setlocal makeprg=php\ -l\ %
@@ -69,6 +68,9 @@ vnoremap <silent> <plug>PIVphpDocRange :call PhpDocRange()<CR>
 vnoremap <silent> <plug>PIVphpAlign :call PhpAlign()<CR>
 "inoremap <buffer> <leader>d :call PhpDocSingle()<CR>i
 
+" Map ; to run PHP parser check
+" noremap ; :!php5 -l %<CR>
+
 " Map ; to "add ; to the end of the line, when missing"
 " noremap <buffer> ; :s/\([^;]\)$/\1;/<cr>
 
@@ -82,42 +84,6 @@ vnoremap <silent> <plug>PIVphpAlign :call PhpAlign()<CR>
 inoremap <buffer> <C-H> <ESC>:!phpm <C-R>=expand("<cword>")<CR><CR>
 
 " }}}
-
-" {{{ Automatic close char mapping
-if g:PIVAutoClose
-    if g:PIVPearStyle
-        inoremap <buffer>  { {<CR>}<C-O>O
-        inoremap <buffer> ( (  )<LEFT><LEFT>
-    else
-        inoremap  { {<CR>}<C-O>O
-        inoremap ( ()<LEFT>
-    endif
-
-    inoremap <buffer> [ []<LEFT>
-    inoremap <buffer> " ""<LEFT>
-    inoremap <buffer> ' ''<LEFT>
-endif
-" }}} Automatic close char mapping
-
-
-" {{{ Wrap visual selections with chars
-
-vnoremap <buffer> ( "zdi(<C-R>z)<ESC>
-vnoremap <buffer> { "zdi{<C-R>z}<ESC>
-vnoremap <buffer> [ "zdi[<C-R>z]<ESC>
-vnoremap <buffer> ' "zdi'<C-R>z'<ESC>
-" Removed in favor of register addressing
-" :vnoremap " "zdi"<C-R>z"<ESC>
-
-" }}} Wrap visual selections with chars
-
-" {{{ Dictionary completion
-setlocal dictionary-=$VIMRUNTIME/bundle/PIV/misc/funclist.txt dictionary+=$VIMRUNTIME/bundle/PIV/misc/funclist.txt
-
-" Use the dictionary completion
-setlocal complete-=k complete+=k
-
-" }}} Dictionary completion
 
 " {{{ Alignment
 
@@ -135,15 +101,15 @@ func! PhpAlign() range
 			continue
 		endif
 		" \{-\} matches ungreed *
-        let l:index = substitute (getline (l:line), '^\s*\(.\{-\}\)\s*\S\{0,1}=\S\{0,1\}\s.*$', '\1', "") 
+        let l:index = substitute (getline (l:line), '^\s*\(.\{-\}\)\s*\S\{0,1}=\S\{0,1\}\s.*$', '\1', "")
         let l:indexlength = strlen (l:index)
         let l:maxlength = l:indexlength > l:maxlength ? l:indexlength : l:maxlength
         let l:line = l:line + 1
     endwhile
-    
+
 	let l:line = a:firstline
 	let l:format = "%s%-" . l:maxlength . "s %s %s"
-    
+
 	while l:line <= l:endline
 		if getline (l:line) =~ '^\s*\/\/.*$'
 			let l:line = l:line + 1
@@ -161,7 +127,7 @@ func! PhpAlign() range
     let &g:paste = l:paste
 endfunc
 
-" }}}   
+" }}}
 
 function! s:CreateNMap(target, combo)
     if !hasmapto(a:target, 'n')
