@@ -49,6 +49,23 @@ call s:InitVariable("g:syntax_extra_inc", 'doxygen')
 call s:InitVariable("g:PIVCreateDefaultMappings", 1)
 call s:InitVariable("g:PIVPearStyle", 0)
 
+" Auto expand tabs to spaces
+" setlocal expandtab
+
+setlocal autoindent " Auto indent after a {
+setlocal smartindent
+
+" Linewidth to 79, because of the formatoptions this is only valid for
+" comments
+setlocal textwidth=79
+set formatoptions=qrocb
+
+setlocal nowrap 		" Do not wrap lines automatically
+
+" Correct indentation after opening a phpdocblock and automatic * on every
+" line
+setlocal formatoptions=qroct
+
 " Use php syntax check when doing :make
 setlocal makeprg=php\ -l\ %
 
