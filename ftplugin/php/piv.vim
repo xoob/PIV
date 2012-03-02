@@ -8,12 +8,7 @@
 " 
 " 
 " Section: script init stuff {{{1
-if exists("loaded_piv")
-    finish
-endif
-let loaded_piv = 1
 
-"
 " Function: s:InitVariable() function {{{2
 " This function is used to initialise a given variable to a given value. The
 " variable is only initialised if it does not exist prior
@@ -49,23 +44,6 @@ call s:InitVariable("g:syntax_extra_inc", 'doxygen')
 call s:InitVariable("g:PIVCreateDefaultMappings", 1)
 call s:InitVariable("g:PIVPearStyle", 0)
 
-" Auto expand tabs to spaces
-" setlocal expandtab
-
-setlocal autoindent " Auto indent after a {
-setlocal smartindent
-
-" Linewidth to 79, because of the formatoptions this is only valid for
-" comments
-setlocal textwidth=79
-set formatoptions=qrocb
-
-setlocal nowrap 		" Do not wrap lines automatically
-
-" Correct indentation after opening a phpdocblock and automatic * on every
-" line
-setlocal formatoptions=qroct
-
 " Use php syntax check when doing :make
 setlocal makeprg=php\ -l\ %
 
@@ -76,6 +54,8 @@ setlocal errorformat=%m\ in\ %f\ on\ line\ %l
 if !exists("g:syntax_on") | syntax on | endif
 
 "setlocal keywordprg=pman " Use pman for manual pages
+
+setlocal kp=:help " use doc files for K shortcut
 
 " }}} Settings
 
