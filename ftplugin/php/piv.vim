@@ -39,8 +39,8 @@ endfunction
 "let php_htmlInStrings=1 " to highlight HTML in string
 "let php_noShortTags = 1 " to disable short tags 
 "let php_folding=1  "to enable folding for classes and functions
-"let PHP_autoformatcomment = 1
-"let php_sync_method = -1
+let PHP_autoformatcomment = 1
+let php_sync_method = -1
 
 " Section: variable init calls {{{2
 call s:InitVariable("g:load_doxygen_syntax", 1)
