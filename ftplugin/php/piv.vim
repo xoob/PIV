@@ -1,13 +1,18 @@
 " File:        php.vim
 " Description: PHP Integration for VIM plugin
-" 			   This file is a considerable fork of the original
-" 			   PDV written by Tobias Schlitt <toby@php.net>.
+"              This file is a considerable fork of the original
+"              PDV written by Tobias Schlitt <toby@php.net>.
 " Maintainer:  Steve Francia <piv@spf13.com> <http://spf13.com>
 " Version:     0.9
 " Last Change: 7th January 2012
 " 
 " 
 " Section: script init stuff {{{1
+
+if exists("loaded_piv")
+    finish
+endif
+let loaded_piv = 1
 
 " Function: s:InitVariable() function {{{2
 " This function is used to initialise a given variable to a given value. The
@@ -92,26 +97,26 @@ func! PhpAlign() range
     let l:endline     = a:lastline
     let l:maxlength = 0
     while l:line <= l:endline
-		" Skip comment lines
-		if getline (l:line) =~ '^\s*\/\/.*$'
-			let l:line = l:line + 1
-			continue
-		endif
-		" \{-\} matches ungreed *
+        " Skip comment lines
+        if getline (l:line) =~ '^\s*\/\/.*$'
+            let l:line = l:line + 1
+            continue
+        endif
+        " \{-\} matches ungreed *
         let l:index = substitute (getline (l:line), '^\s*\(.\{-\}\)\s*\S\{0,1}=\S\{0,1\}\s.*$', '\1', "")
         let l:indexlength = strlen (l:index)
         let l:maxlength = l:indexlength > l:maxlength ? l:indexlength : l:maxlength
         let l:line = l:line + 1
     endwhile
 
-	let l:line = a:firstline
-	let l:format = "%s%-" . l:maxlength . "s %s %s"
+    let l:line = a:firstline
+    let l:format = "%s%-" . l:maxlength . "s %s %s"
 
-	while l:line <= l:endline
-		if getline (l:line) =~ '^\s*\/\/.*$'
-			let l:line = l:line + 1
-			continue
-		endif
+    while l:line <= l:endline
+        if getline (l:line) =~ '^\s*\/\/.*$'
+            let l:line = l:line + 1
+            continue
+        endif
         let l:linestart = substitute (getline (l:line), '^\(\s*\).*', '\1', "")
         let l:linekey   = substitute (getline (l:line), '^\s*\(.\{-\}\)\s*\(\S\{0,1}=\S\{0,1\}\)\s\(.*\)$', '\1', "")
         let l:linesep   = substitute (getline (l:line), '^\s*\(.\{-\}\)\s*\(\S\{0,1}=\S\{0,1\}\)\s\(.*\)$', '\2', "")
@@ -139,12 +144,12 @@ function! s:CreateVMap(target, combo)
 endfunction
 
 function! s:CreateMaps(target, combo)
-	call s:CreateNMap(a:target,a:combo)
-	call s:CreateVMap(a:target,a:combo)
+    call s:CreateNMap(a:target,a:combo)
+    call s:CreateVMap(a:target,a:combo)
 endfunction
 
 if g:PIVCreateDefaultMappings
-    call s:CreateNMap('<plug>PIVphpDocSingle', 		   ',pd')
-    call s:CreateVMap('<plug>PIVphpDocRange',     	   ',pd')
-    call s:CreateMaps('<plug>PIVphpAlign ', 		   ',pa')
+    call s:CreateNMap('<plug>PIVphpDocSingle',         ',pd')
+    call s:CreateVMap('<plug>PIVphpDocRange',          ',pd')
+    call s:CreateMaps('<plug>PIVphpAlign ',            ',pa')
 endif
